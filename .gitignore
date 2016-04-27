@@ -2,6 +2,7 @@
 *.pyc
 *.py~
 *.swp
+*.egg-info
 
 # Installer logs
 pip-log.txt

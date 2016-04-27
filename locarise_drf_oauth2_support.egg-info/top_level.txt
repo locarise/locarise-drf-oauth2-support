@@ -1,1 +1,0 @@
-locarise_drf_oauth2_support
