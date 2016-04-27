@@ -25,7 +25,8 @@ setup(
         'djangorestframework>=3.0.1',
         'django-oauth-toolkit>=0.9.0',
         'python-social-auth>=0.2.2',
-        'shortuuid>=0.4.3'
+        'shortuuid>=0.4.3',
+        'django-extensions>=1.6.1',
     ],
     include_package_data=True,
     zip_safe=True,
