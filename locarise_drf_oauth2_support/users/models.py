@@ -14,7 +14,7 @@ from django_extensions.db.fields import (
     CreationDateTimeField
 )
 
-from locarise.utils import sane_repr
+from .utils import sane_repr
 
 
 class UserManager(BaseUserManager):
