@@ -1,0 +1,45 @@
+*.db
+*.pyc
+*.py~
+*.swp
+
+# Installer logs
+pip-log.txt
+logs
+*.log
+*.pid
+
+# Ignore built docs..
+docs/_build
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+# Vim
+*.swp
+.rope*
+
+# Emacs
+*\#
+.\#*
+
+# Tags for git-helpers
+tags
+
+nohup.out
+
+# Vagrant
+.vagrant*
+
+# Other
+*.png
+*.csv
+*.gz
+*.pdf
+
+.idea/
+
+server/sads_data
+server/media/
+server/static/

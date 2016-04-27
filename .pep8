@@ -1,0 +1,9 @@
+[pep8]
+ignore=E401
+max-line-length=80
+exclude=*/migrations/*
+
+[flake8]
+ignore=E401
+max-line-length=80
+exclude=*/migrations/*
