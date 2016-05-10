@@ -12,7 +12,7 @@ class LocariseOAuth2(BaseOAuth2):
     """
     Locarise OAuth authentication backend
     """
-    name = 'locarise'
+    name = 'locarise-oauth2'
     ACCESS_TOKEN_METHOD = 'POST'
     SCOPE_SEPARATOR = ','
     REDIRECT_STATE = False
