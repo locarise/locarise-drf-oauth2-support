@@ -78,11 +78,11 @@ AUTHENTICATION_BACKENDS = (
 
 Configure your client ID and Secret
 ```
-SOCIAL_AUTH_LOCARISE_KEY = os.environ.get(
+SOCIAL_AUTH_LOCARISE_OAUTH2_KEY = os.environ.get(
     'LOCARISE_OAUTH2_CLIENT_ID',
     'XXXXXXXXXXXXXXXXXXXXX'
 )
-SOCIAL_AUTH_LOCARISE_SECRET = os.environ.get(
+SOCIAL_AUTH_LOCARISE_OAUTH2_SECRET = os.environ.get(
     'LOCARISE_OAUTH2_CLIENT_SECRET',
     'YYYYYYYYYYYYYYYYYYYYY'
 )
@@ -91,11 +91,11 @@ SOCIAL_AUTH_LOCARISE_SECRET = os.environ.get(
 Optional (Locarise production endpoints are set by default)
 
 ```
-SOCIAL_AUTH_LOCARISE_TOKEN_URL = os.environ.get(
+SOCIAL_AUTH_LOCARISE_OAUTH2_TOKEN_URL = os.environ.get(
     'LOCARISE_OAUTH2_TOKEN_URL',
     'http://127.0.0.1:8001/oauth2/access_token'
 )
-SOCIAL_AUTH_LOCARISE_AUTHORIZATION_URL = os.environ.get(
+SOCIAL_AUTH_LOCARISE_OAUTH2_AUTHORIZATION_URL = os.environ.get(
     'LOCARISE_OAUTH2_AUTHORIZATION_URL',
     'http://127.0.0.1:8001/oauth2/authorize'
 )
