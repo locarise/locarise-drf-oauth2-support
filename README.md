@@ -33,7 +33,7 @@ If you haven't it yet, you can install the users app (see below).
 
 A Oauth2 client:
 * `url` likes `http://127.0.0.1:8009/`
-* `redirect uri` likes `http://127.0.0.1:8009/complete/locarise/`
+* `redirect uri` likes `http://127.0.0.1:8009/complete/locarise-oauth2/`
 * `client type` is `confidential`
 
 You can create a client or read its parameters through

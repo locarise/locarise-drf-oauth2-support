@@ -62,8 +62,7 @@ class OAuthObtainAuthToken(APIView):
     model = Token
 
     def post(self, request, backend, *args, **kwargs):
-        backend = request.social_backend = get_backend(backend, request,
-                                                            request.path)
+        backend = request.social_backend = get_backend(backend, request)
         if request.social_backend is None:
             raise WrongBackend(backend)
         serializer = self.serializer_class(data=request.DATA, backend=backend)
