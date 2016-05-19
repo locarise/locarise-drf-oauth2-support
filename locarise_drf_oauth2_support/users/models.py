@@ -46,7 +46,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     # Fields from SAMS
     uid = models.CharField(
-        primary_key=True, max_length=22, default=uuid.uuid4, editable=False
+        max_length=22, default=uuid.uuid4,
+        editable=False, db_index=True
     )
     email = models.EmailField(unique=True, max_length=254)
     first_name = models.CharField(max_length=30, blank=True)
