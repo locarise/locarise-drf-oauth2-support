@@ -47,7 +47,7 @@ Add these apps to your INSTALLED_APPS
 INSTALLED_APPS = (
     ...
     'social.apps.django_app.default',
-    'locarise_drf_oauth2_support.oauth2-client',
+    'locarise_drf_oauth2_support.oauth2_client',
 )
 ```
 
