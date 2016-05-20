@@ -39,10 +39,12 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
-class User(AbstractBaseUser, PermissionsMixin):
+class AbstractUser(AbstractBaseUser, PermissionsMixin):
     """
-    Users within the Django authentication system are represented by this model.
+    Reusable apps shouldn’t implement a custom user model.
+    https://docs.djangoproject.com/en/1.9/topics/auth/customizing/
+
+    Subclass this to provide local User model
     """
     # Fields from SAMS
     uid = models.CharField(
@@ -69,6 +71,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
+        abstract = True
 
     def get_full_name(self):
         """
