@@ -2,6 +2,7 @@
 
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
+from rest_framework import __version__
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -40,7 +41,7 @@ class ObtainAuthToken(APIView):
     model = Token
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.DATA)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             token, created = Token.objects.get_or_create(
                 user=serializer.object['user'])
@@ -65,7 +66,7 @@ class OAuthObtainAuthToken(APIView):
         backend = request.social_backend = get_backend(backend, request)
         if request.social_backend is None:
             raise WrongBackend(backend)
-        serializer = self.serializer_class(data=request.DATA, backend=backend)
+        serializer = self.serializer_class(data=request.data, backend=backend)
         if serializer.is_valid():
             token, created = Token.objects.get_or_create(
                 user=serializer.object['user'])

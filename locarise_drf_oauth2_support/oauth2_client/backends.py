@@ -38,7 +38,7 @@ class LocariseOAuth2(BaseOAuth2):
 
     def get_user_details(self, response):
         """
-        Return user details from Slack account
+        Return user details from Locarise account
         """
         return {
             'email': response['email'],
