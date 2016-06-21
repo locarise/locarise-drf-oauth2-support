@@ -12,9 +12,10 @@ next_page = {'next_page': '/'}
 auth_patterns = patterns('django.contrib.auth.views',  # noqa
     # API Views
     url(r'^token', ObtainAuthToken.as_view(), name='token'),
-    url(r'^oauth2/(?P<backend>[^/]+)/token$', OAuthObtainAuthToken.as_view(),
-        name='oauth2-token'),
-
+    url(r'^oauth2/(?P<backend_name>[^/]+)/token$',
+        OAuthObtainAuthToken.as_view(),
+        name='oauth2-token'
+    ),
     # Browsable API Views
     url(r'^login$', 'login', template_name, name='login'),
     url(r'^logout$', 'logout', next_page, name='logout'),

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth import get_user_model
-from django.conf import settings
 
 from rest_framework.authtoken.models import Token
 
@@ -9,8 +8,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, parsers, renderers
 
-from social.backends.utils import get_backend
 from social.exceptions import WrongBackend
+from social.backends.utils import get_backend
+from social.strategies.utils import get_current_strategy
 
 from .serializers import AuthTokenSerializer, AccessTokenSerializer
 
@@ -18,7 +18,16 @@ from .serializers import AuthTokenSerializer, AccessTokenSerializer
 User = get_user_model()
 
 
-class ObtainAuthToken(APIView):
+class SocialMixin(object):
+
+    def get_backend_instance(self, name=None, strategy=None):
+        strategy = strategy or get_current_strategy()
+        Backend = get_backend(strategy.get_backends(), name)
+        if Backend:
+            return Backend(strategy=strategy)
+
+
+class ObtainAuthToken(SocialMixin, APIView):
     """
     This authentication scheme uses a simple token-based HTTP Authentication
     scheme.
@@ -45,12 +54,13 @@ class ObtainAuthToken(APIView):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             token, created = Token.objects.get_or_create(
-                user=serializer.object['user'])
+                user=serializer.validated_data['user']
+            )
             return Response({'token': token.key})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class OAuthObtainAuthToken(APIView):
+class OAuthObtainAuthToken(SocialMixin, APIView):
     """
     This authentication scheme uses the oauth2 access token from the given
     authentication backend to authenticate the user.
@@ -63,13 +73,11 @@ class OAuthObtainAuthToken(APIView):
     serializer_class = AccessTokenSerializer
     model = Token
 
-    def post(self, request, backend, *args, **kwargs):
-        social_backend = request.social_backend = get_backend(
-            backends=settings.AUTHENTICATION_BACKENDS,
-            name=backend
-        )
-        if request.social_backend is None:
-            raise WrongBackend(backend)
+    def post(self, request, backend_name, *args, **kwargs):
+
+        social_backend = self.get_backend_instance(name=backend_name)
+        if not social_backend:
+            raise WrongBackend(backend_name)
 
         serializer = self.serializer_class(
             data=request.data,
@@ -77,7 +85,8 @@ class OAuthObtainAuthToken(APIView):
         )
         if serializer.is_valid():
             token, created = Token.objects.get_or_create(
-                user=serializer.object['user'])
+                user=serializer.validated_data['user']
+            )
             return Response({'token': token.key})
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
