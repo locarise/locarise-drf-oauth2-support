@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth import get_user_model
+from django.conf import settings
+
 from rest_framework.authtoken.models import Token
 
 from rest_framework.views import APIView
@@ -40,7 +42,7 @@ class ObtainAuthToken(APIView):
     model = Token
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.DATA)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             token, created = Token.objects.get_or_create(
                 user=serializer.object['user'])
@@ -62,12 +64,20 @@ class OAuthObtainAuthToken(APIView):
     model = Token
 
     def post(self, request, backend, *args, **kwargs):
-        backend = request.social_backend = get_backend(backend, request)
+        social_backend = request.social_backend = get_backend(
+            backends=settings.AUTHENTICATION_BACKENDS,
+            name=backend
+        )
         if request.social_backend is None:
             raise WrongBackend(backend)
-        serializer = self.serializer_class(data=request.DATA, backend=backend)
+
+        serializer = self.serializer_class(
+            data=request.data,
+            backend=social_backend
+        )
         if serializer.is_valid():
             token, created = Token.objects.get_or_create(
                 user=serializer.object['user'])
             return Response({'token': token.key})
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
