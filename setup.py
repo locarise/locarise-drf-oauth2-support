@@ -26,6 +26,7 @@ setup(
         'django-oauth-toolkit>=0.9.0',
         'python-social-auth>=0.2.2',
         'shortuuid>=0.4.3',
+        'django-shortuuidfield>=0.1.3',
         'django-extensions>=1.6.1',
     ],
     include_package_data=True,
