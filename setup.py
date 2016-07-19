@@ -28,6 +28,7 @@ setup(
         'shortuuid>=0.4.3',
         'django-shortuuidfield>=0.1.3',
         'django-extensions>=1.6.1',
+        'factory-boy>=2.5.1'
     ],
     include_package_data=True,
     zip_safe=True,
