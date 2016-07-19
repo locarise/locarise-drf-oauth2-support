@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import uuid
+from shortuuidfield import ShortUUIDField
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -45,9 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     Users within the Django authentication system are represented by this model.
     """
     # Fields from SAMS
-    uid = models.CharField(
-        primary_key=True, max_length=22, default=uuid.uuid4, editable=False
-    )
+    uid = ShortUUIDField(primary_key=True, editable=False)
     email = models.EmailField(unique=True, max_length=254)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
