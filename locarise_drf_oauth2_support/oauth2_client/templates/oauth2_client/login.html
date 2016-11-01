@@ -1,7 +1,6 @@
 {% extends "rest_framework/base.html" %}
 {% load staticfiles %}
 {% load rest_framework %}
-{% load settings_value %}
 
 {% block body %}
 <body class="container">
@@ -13,7 +12,7 @@
                 <div>
                     {% block branding %}
                     <h3 style="margin: 0 0 20px;">
-                        {% settings_value "PROJECT" %}
+                        Locarise API
                     </h3>
                     {% endblock %}
                 </div>

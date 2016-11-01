@@ -1,4 +1,32 @@
-from setuptools import setup, find_packages
+import os
+
+from setuptools import setup
+
+
+def get_packages(package):
+    """
+    Return root package and all sub-packages.
+    """
+    return [dirpath
+            for dirpath, dirnames, filenames in os.walk(package)
+            if os.path.exists(os.path.join(dirpath, '__init__.py'))]
+
+
+def get_package_data(package):
+    """
+    Return all files under the root package, that are not in a
+    package themselves.
+    """
+    walk = [(dirpath.replace(package + os.sep, '', 1), filenames)
+            for dirpath, dirnames, filenames in os.walk(package)
+            if not os.path.exists(os.path.join(dirpath, '__init__.py'))]
+
+    filepaths = []
+    for base, filenames in walk:
+        filepaths.extend([os.path.join(base, filename)
+                          for filename in filenames])
+    return {package: filepaths}
+
 
 setup(
     name='locarise-drf-oauth2-support',
@@ -9,7 +37,8 @@ setup(
     author_email='charles.vallantin-dulac@locarise.com',
     url='https://github.com/locarise/locarise-drf-oauth2-support',
     license='BSD License',
-    packages=find_packages(),
+    packages=get_packages('locarise_drf_oauth2_support'),
+    package_data=get_package_data('locarise_drf_oauth2_support'),
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Web Environment",
@@ -28,7 +57,7 @@ setup(
         'shortuuid>=0.4.3',
         'django-shortuuidfield>=0.1.3',
         'django-extensions>=1.6.1',
-        'factory-boy>=2.5.1'
+        # 'factory-boy>=2.5.1'
     ],
     include_package_data=True,
     zip_safe=True,

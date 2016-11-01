@@ -44,3 +44,8 @@ nohup.out
 server/sads_data
 server/media/
 server/static/
+
+*.egg
+*.egg-info
+dist
+build
