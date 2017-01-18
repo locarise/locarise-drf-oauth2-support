@@ -53,7 +53,8 @@ setup(
     install_requires=[
         'djangorestframework>=3.0.1',
         'django-oauth-toolkit>=0.9.0',
-        'python-social-auth>=0.2.2',
+        'python-social-auth>=0.3.3,<0.4',
+        'social-auth-app-django>=0.1.0,<0.2'
         'shortuuid>=0.4.3',
         'django-shortuuidfield>=0.1.3',
         'django-extensions>=1.6.1',

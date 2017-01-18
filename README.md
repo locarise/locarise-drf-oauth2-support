@@ -1,22 +1,29 @@
 # Locarise Django Rest-Framework Oauth2 Support
 
+Install this lib if you would like to login with Locarise Auth provider
+(`accounts.locarise.com`)
+
+---
+
 This module provides
 
-* a `python-social-auth` and `oauth2` support for django-rest-framework,
+* An `oauth2` support for django-rest-framework,
 connected to `Locarise Oauth2 provider`.
-* an `users` application (models and DRF views)
-
-Install this lib if you need to add login to Locarise Auth provider
-(`accounts.locarise.com`)
+* An `users` application (models and DRF views).
 
 Works only with `Django >= 1.7` and `djangorestframework>=3.0.1`
 
 ## Installation
 
+### Python
+
 Install with pip:
+
+```bash
+$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support>=0.1.3
 ```
-pip install -e git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support
-```
+
+### Django
 
 You have the choice to install only the Oauth client, only the users
 application or both.
@@ -43,33 +50,34 @@ https://accounts.locarise.com/admin/provider/client/ interface.
 
 Add these apps to your INSTALLED_APPS
 
-```
+```python
 INSTALLED_APPS = (
-    ...
-    'social.apps.django_app.default',
+    ...,
+    'social_django',
     'locarise_drf_oauth2_support.oauth2_client',
 )
 ```
 
 Add these context processors to your TEMPLATE_CONTEXT_PROCESSORS
 
-```
+```python
 TEMPLATES = [
     {
         ...
         'OPTIONS': {
             'context_processors': [
                 ...
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     }
 ]
 ```
 
-Add Locarise authentication backend:
-```
+Set Locarise authentication backend:
+
+```python
 AUTHENTICATION_BACKENDS = (
     'locarise_drf_oauth2_support.oauth2_client.backends.LocariseOAuth2',
     'django.contrib.auth.backends.ModelBackend',
@@ -77,7 +85,8 @@ AUTHENTICATION_BACKENDS = (
 ```
 
 Configure your client ID and Secret
-```
+
+```python
 SOCIAL_AUTH_LOCARISE_OAUTH2_KEY = os.environ.get(
     'LOCARISE_OAUTH2_CLIENT_ID',
     'XXXXXXXXXXXXXXXXXXXXX'
@@ -90,7 +99,7 @@ SOCIAL_AUTH_LOCARISE_OAUTH2_SECRET = os.environ.get(
 
 Optional (Locarise production endpoints are set by default)
 
-```
+```python
 SOCIAL_AUTH_LOCARISE_OAUTH2_TOKEN_URL = os.environ.get(
     'LOCARISE_OAUTH2_TOKEN_URL',
     'http://127.0.0.1:8001/oauth2/access_token'
@@ -108,7 +117,8 @@ SOCIAL_AUTH_API_PROFILE_URL = os.environ.get(
 According to your `User` model fields, you have to define which fields from
 `accounts.locarise.com` you want to copy in local (choices come from
 http://accounts.locarise.com/userinfo endpoint).
-```
+
+```python
 SOCIAL_AUTH_USER_FIELDS = [
     'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'locale'
 ]
@@ -116,7 +126,7 @@ SOCIAL_AUTH_USER_FIELDS = [
 
 Include auth urls to your urls.py
 
-```
+```python
 urlpatterns = patterns(
     ...
     # Authentication
@@ -129,7 +139,7 @@ urlpatterns = patterns(
 If you want your API has the same behavior than the others, add these apps
 to your INSTALLED_APPS
 
-```
+```python
 INSTALLED_APPS = (
     ...
     'corsheaders',
@@ -139,7 +149,7 @@ INSTALLED_APPS = (
 
 Set up REST Framework classes:
 
-```
+```python
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
@@ -155,7 +165,7 @@ REST_FRAMEWORK = {
 
 Add this app to your INSTALLED_APPS
 
-```
+```python
 INSTALLED_APPS = (
     ...
    'locarise_drf_oauth2_support.users',
@@ -164,13 +174,13 @@ INSTALLED_APPS = (
 
 And declare:
 
-```
+```python
 AUTH_USER_MODEL = 'users.User'
 ```
 
 Then include auth urls to your urls.py
 
-```
+```python
 urlpatterns = patterns(
     ...
     # Users
@@ -178,6 +188,9 @@ urlpatterns = patterns(
 )
 ```
 
+## License
 
+Copyright (c) 2013-2017, Locarise inc.
+All rights reserved.
 
 
