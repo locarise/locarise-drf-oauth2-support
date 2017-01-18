@@ -2,7 +2,7 @@
 
 dependencies:
   pre:
-    - pip install flake8 flake8-print
+    - pip install flake8 flake8-print Django
 
 test:
   override:
