@@ -3,6 +3,8 @@
 Install this lib if you would like to login with Locarise Auth provider
 (`accounts.locarise.com`)
 
+[![CircleCIBadge]](https://circleci.com/gh/locarise/locarise-drf-oauth2-support/tree/develop)
+
 ---
 
 This module provides
@@ -199,3 +201,4 @@ Copyright (c) 2013-2017, Locarise inc.
 All rights reserved.
 
 
+[CircleCIBadge]: https://circleci.com/gh/locarise/locarise-drf-oauth2-support/tree/develop.svg?style=svg
