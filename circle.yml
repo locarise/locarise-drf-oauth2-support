@@ -1,0 +1,9 @@
+# Works with build image 14.04 (Trusty)
+
+dependencies:
+  pre:
+    - pip install flake8 flake8-print
+
+test:
+  override:
+    - flake8 locarise_drf_oauth2_support

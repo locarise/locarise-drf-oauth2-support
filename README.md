@@ -188,6 +188,11 @@ urlpatterns = patterns(
 )
 ```
 
+## Continuous integration
+
+**[CircleCI](https://circleci.com/dashboard)** is already set up for
+this project.
+
 ## License
 
 Copyright (c) 2013-2017, Locarise inc.

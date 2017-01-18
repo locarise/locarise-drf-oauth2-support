@@ -42,7 +42,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    Users within the Django authentication system are represented by this model.
+    Users within the Django authentication system are represented by
+    this model.
     """
     # Fields from SAMS
     uid = ShortUUIDField(primary_key=True, editable=False)
