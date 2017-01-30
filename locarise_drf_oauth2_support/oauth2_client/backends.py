@@ -63,6 +63,6 @@ class LocariseOAuth2(BaseOAuth2):
         """
         data = self.get_json(
             self.api_profile_url(),
-            params={'access_token': access_token}
+            headers={'Authorization': 'Bearer {}'.format(access_token)}
         )
         return data
