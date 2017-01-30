@@ -1,1 +1,10 @@
 # Works with build image 14.04 (Trusty)
+
+dependencies:
+  override:
+    - pyenv local 2.7.11 3.5.2
+    - pip install tox tox-pyenv detox
+
+test:
+  override:
+    - tox
