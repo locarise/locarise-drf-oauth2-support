@@ -14,6 +14,12 @@ from django_extensions.db.fields import (
     CreationDateTimeField
 )
 
+try:
+    from django.contrib.postgres.fields import JSONField
+except ImportError:
+    from jsonfield import JSONField
+
+
 from .utils import sane_repr
 
 
@@ -53,6 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     locale = models.CharField(max_length=5)
+    organization_set = JSONField(null=True)
 
     # Local fields
     created_at = CreationDateTimeField()

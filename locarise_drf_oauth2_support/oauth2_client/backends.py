@@ -49,6 +49,7 @@ class LocariseOAuth2(BaseOAuth2):
             'is_active': response.get('is_active'),
             'is_superuser': response.get('is_superuser'),
             'locale': response.get('locale'),
+            'organization_set': response.get('organization_set', []),
         }
 
     def api_profile_url(self):
