@@ -13,7 +13,10 @@ This module provides
 connected to `Locarise Oauth2 provider`.
 * An `users` application (models and DRF views).
 
-Works only with `Django >= 1.7` and `djangorestframework>=3.0.1`
+Works with:
+
+* `Django >= 1.8` and `djangorestframework>=3.0.1`
+* `Python 2.7` and `Python 3.5`
 
 ## Installation
 
@@ -122,7 +125,8 @@ http://accounts.locarise.com/userinfo endpoint).
 
 ```python
 SOCIAL_AUTH_USER_FIELDS = [
-    'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'locale'
+    'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active',
+    'locale', 'organization_set'
 ]
 ```
 
@@ -145,6 +149,7 @@ to your INSTALLED_APPS
 INSTALLED_APPS = (
     ...
     'corsheaders',
+    'rest_framework',
     'rest_framework.authtoken',
 )
 ```
