@@ -30,6 +30,6 @@ auth_patterns = [
 ]
 
 urlpatterns = [
-    url('', include('social_django.urls', namespace='social')),
+    url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^auth/', include(auth_patterns, namespace='rest_framework')),
 ]

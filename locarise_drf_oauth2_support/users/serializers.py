@@ -19,8 +19,9 @@ class CurrentUserSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(read_only=True)
     locale = serializers.CharField(read_only=True)
     created_at = serializers.DateTimeField(read_only=True)
+    organization_set = serializers.JSONField(read_only=True)
 
     class Meta:
         model = User
-        fields = ('uid', 'email', 'first_name', 'last_name',
-                  'is_staff', 'is_active', 'locale', 'created_at')
+        fields = ('uid', 'email', 'first_name', 'last_name', 'is_staff',
+                  'is_active', 'locale', 'created_at', 'organization_set')

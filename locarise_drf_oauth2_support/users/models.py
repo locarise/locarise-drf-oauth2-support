@@ -16,7 +16,7 @@ from django_extensions.db.fields import (
 
 try:
     from django.contrib.postgres.fields import JSONField
-except ImportError:
+except ImportError:  # pragma: no cover
     from jsonfield import JSONField
 
 
@@ -69,7 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
-    __repr__ = sane_repr('email', 'uid')
+    __repr__ = sane_repr('email',)
 
     class Meta:
         verbose_name = _('user')

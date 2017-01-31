@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
 from django.contrib.auth import get_user_model, authenticate
 
@@ -21,7 +21,7 @@ class AuthTokenSerializer(serializers.Serializer):
             user = authenticate(email=email, password=password)
 
             if user:
-                if not user.is_active:
+                if not user.is_active:  # pragma: no cover
                     raise serializers.ValidationError(
                         'User account is disabled.')
                 attrs['user'] = user
@@ -29,7 +29,7 @@ class AuthTokenSerializer(serializers.Serializer):
             else:
                 raise serializers.ValidationError(
                     'Unable to login with provided credentials.')
-        else:
+        else:  # pragma: no cover
             raise serializers.ValidationError(
                 'Must include "email" and "password"')
 
@@ -55,6 +55,6 @@ class AccessTokenSerializer(serializers.Serializer):
                 raise serializers.ValidationError('User account is disabled.')
             attrs['user'] = user
             return attrs
-        else:
+        else:  # pragma: no cover
             raise serializers.ValidationError(
                 'Unable to login with provided credentials.')

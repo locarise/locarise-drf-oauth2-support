@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 try:
     from django.contrib.postgres.fields.jsonb import JSONField
-except ImportError:
+except ImportError:  # pragma: no cover
     from jsonfield import JSONField
 
 from django.db import migrations

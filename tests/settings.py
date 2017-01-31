@@ -2,14 +2,15 @@ from __future__ import unicode_literals, absolute_import
 
 import os
 
+import dj_database_url
+
 DEBUG = True
 USE_TZ = True
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
-    }
+    'default': dj_database_url.config(
+        default='postgres://username:pass@localhost:5432/locarise_dos_db'
+    )
 }
 
 ROOT_URLCONF = 'tests.urls'
@@ -19,8 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
 
-    'social_django',
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    'social.apps.django_app.default',
     'locarise_drf_oauth2_support.users',
     'locarise_drf_oauth2_support.oauth2_client',
 ]
@@ -36,16 +41,19 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect'
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect'
             ],
         },
     },
 ]
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -62,10 +70,6 @@ SOCIAL_AUTH_LOCARISE_OAUTH2_SECRET = os.environ.get(
     '907f6b89795ccfc093b678b85226f2c88e25a4d0'
 )
 
-LOCARISE_API_PROFILE = '127.0.0.1:8001/userinfo.json'
-LOCARISE_OAUTH2_AUTHORIZATION_URL = '127.0.0.1:8001/oauth2/authorize'
-LOCARISE_OAUTH2_TOKEN_URL = '127.0.0.1:8001/oauth2/access_token'
-
 SOCIAL_AUTH_USER_FIELDS = [
     'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'locale'
 ]
@@ -73,3 +77,12 @@ SOCIAL_AUTH_USER_FIELDS = [
 AUTH_USER_MODEL = 'users.User'
 
 SECRET_KEY = '6p%gef2(6kvjsgl*7!51a7z8c3=u4uc&6ulpua0g1^&sthiifp'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}

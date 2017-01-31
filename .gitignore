@@ -46,6 +46,8 @@ server/media/
 server/static/
 
 *.egg
+*.eggs/
 *.egg-info
 dist
 build
+htmlcov/
