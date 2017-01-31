@@ -9,10 +9,10 @@
         <div class="well"
              style="width: 320px; margin-left: auto; margin-right: auto">
             <div class="row-fluid">
-                <div>
+                <div class="text-center">
                     {% block branding %}
                     <h3 style="margin: 0 0 20px;">
-                        Locarise API
+                        Locarise API Login
                     </h3>
                     {% endblock %}
                 </div>
@@ -21,7 +21,7 @@
             <div class="row-fluid">
                 {% if debug %}
                 <div>
-                    <form action="{% url 'rest_framework:login' %}" role="form"
+                    <form action="{% url 'rest_framework:login' %}?next={{ next }}" role="form"
                           method="post">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ next }}"/>
@@ -83,7 +83,7 @@
 
                 <div align="center">
                     <a class="btn btn-default btn-large locarise"
-                       href="{% url 'social:begin' 'locarise-oauth2' %}?next=/">
+                       href="{% url 'social:begin' 'locarise-oauth2' %}?next={{ next }}">
                         <img src="{% static 'img/logo-full.svg' %}">
                         Locarise Login
                     </a>
