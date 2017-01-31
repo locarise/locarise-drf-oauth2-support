@@ -5,7 +5,7 @@ Locarise OAuth2 backend, docs at:
     https://accounts.locarise.com
 """
 
-from social.backends.oauth import BaseOAuth2
+from social_core.backends.oauth import BaseOAuth2
 
 
 class LocariseOAuth2(BaseOAuth2):

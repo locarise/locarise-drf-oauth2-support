@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.http import Http404
 
@@ -9,9 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, parsers, renderers
 
-from social.backends.utils import get_backend
-from social.exceptions import MissingBackend
-from social.strategies.utils import get_current_strategy
+from social_core.backends.utils import get_backend
+from social_core.exceptions import MissingBackend
 
 from .serializers import AuthTokenSerializer, AccessTokenSerializer
 
@@ -66,12 +65,13 @@ class OAuthObtainAuthToken(APIView):
     model = Token
 
     def get_backend_instance(self, name=None, strategy=None):
-        strategy = strategy or get_current_strategy()
         try:
-            backend = get_backend(strategy.get_backends(), name)
+            backend = get_backend(
+                backends=settings.AUTHENTICATION_BACKENDS,
+                name=name
+            )
         except MissingBackend:
             raise Http404
-
         return backend(strategy=strategy)
 
     def post(self, request, backend_name, *args, **kwargs):

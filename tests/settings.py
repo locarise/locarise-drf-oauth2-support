@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
-    'social.apps.django_app.default',
+    'social_django',
     'locarise_drf_oauth2_support.users',
     'locarise_drf_oauth2_support.oauth2_client',
 ]
@@ -41,8 +41,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect'
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect'
             ],
         },
     },
@@ -71,7 +71,8 @@ SOCIAL_AUTH_LOCARISE_OAUTH2_SECRET = os.environ.get(
 )
 
 SOCIAL_AUTH_USER_FIELDS = [
-    'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'locale'
+    'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active',
+    'locale', 'organization_set'
 ]
 
 AUTH_USER_MODEL = 'users.User'

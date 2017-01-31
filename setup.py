@@ -51,11 +51,12 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     install_requires=[
-        'social-auth-core==0.2.1',
-        'python-social-auth==0.3.3',
-        'social-auth-app-django==0.1.0',
-        'django-oauth-toolkit==0.11.0',
-        'python-social-auth==0.3.3',
+        # Auth
+        'social-auth-app-django==1.0.1',
+        'social-auth-core==1.0.1',
+        'requests-oauthlib==0.7.0',
+        # 'python-social-auth==0.3.5',  # not used and deprecated
+        'oauthlib==2.0.1',
 
         # Other
         'Django>=1.8',
