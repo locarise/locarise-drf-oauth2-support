@@ -25,7 +25,7 @@ Works with:
 Install with pip:
 
 ```bash
-$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support==0.2.0
+$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support==0.2.2
 ```
 
 ### Django
