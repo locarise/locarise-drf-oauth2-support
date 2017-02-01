@@ -15,6 +15,12 @@ try:
         is_superuser = False
         last_login = timezone.now() - timedelta(days=2)
         password = factory.PostGenerationMethodCall('set_password', 'pass')
+        organization_set = [{
+            "uid": "6tbgzDKyZYLCMzDarN7ga8",
+            "name": "Organization Demo",
+            "role": "organization-manager",
+            "is_active": True
+        }]
 
         class Meta:
             model = User
