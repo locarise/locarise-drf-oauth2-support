@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 
-from locarise_drf_oauth2_support.users.factories import UserF
+from locarise_drf_oauth2_support.users.factories import UserF, AdminUserF
 from locarise_drf_oauth2_support.users.models import User
 
 
@@ -23,6 +23,10 @@ class TestModels(TestCase):
         self.assertEqual(user.get_short_name(), user.first_name)
 
         self.assertRaises(ValueError, User.objects.create_user, None)
+
+        admin = AdminUserF()
+        self.assertTrue(admin.is_staff)
+        self.assertTrue(admin.is_superuser)
 
     def test_user_organizations(self):
         user = UserF()

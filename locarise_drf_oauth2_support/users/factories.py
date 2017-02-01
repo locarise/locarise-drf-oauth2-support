@@ -27,5 +27,10 @@ try:
         class Meta:
             model = User
 
+    class AdminUserF(UserF):
+        is_staff = True
+        is_superuser = True
+
+
 except ImportError:  # pragma: no cover
     pass
