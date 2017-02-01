@@ -195,6 +195,15 @@ urlpatterns = patterns(
 )
 ```
 
+## Testing
+
+Install and run `tox`:
+
+``` sh
+$ pip install tox
+$ tox
+```
+
 ## Continuous integration
 
 **[CircleCI](https://circleci.com/dashboard)** is already set up for
