@@ -59,7 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     locale = models.CharField(max_length=5)
-    organization_set = JSONField(null=True)
+    organizations = JSONField(null=True)
 
     # Local fields
     created_at = CreationDateTimeField()

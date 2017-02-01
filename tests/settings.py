@@ -72,7 +72,7 @@ SOCIAL_AUTH_LOCARISE_OAUTH2_SECRET = os.environ.get(
 
 SOCIAL_AUTH_USER_FIELDS = [
     'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active',
-    'locale', 'organization_set'
+    'locale', 'organizations'
 ]
 
 AUTH_USER_MODEL = 'users.User'

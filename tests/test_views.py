@@ -101,7 +101,7 @@ class TestOauth2ClientViewsTestCase(TestCase):
             'is_active': True,
             'is_superuser': False,
             'locale': 'en-us',
-            'organization_set': [
+            'organizations': [
                 {
                     'uid': 'orga-uid',
                     'name': 'orga-name',
@@ -136,7 +136,7 @@ class TestOauth2ClientViewsTestCase(TestCase):
         self.assertEqual(john.is_superuser, False)
         self.assertEqual(john.locale, 'en-us')
         self.assertEqual(
-            john.organization_set,
+            john.organizations,
             [
                 {
                     'uid': 'orga-uid',
@@ -157,7 +157,7 @@ class TestOauth2ClientViewsTestCase(TestCase):
             'is_active': False,
             'is_superuser': False,
             'locale': 'en-us',
-            'organization_set': [
+            'organizations': [
                 {
                     'uid': 'orga-uid',
                     'name': 'orga-name',

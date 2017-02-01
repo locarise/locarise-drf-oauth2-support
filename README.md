@@ -126,7 +126,7 @@ http://accounts.locarise.com/userinfo endpoint).
 ```python
 SOCIAL_AUTH_USER_FIELDS = [
     'uid', 'email', 'first_name', 'last_name', 'is_staff', 'is_active',
-    'locale', 'organization_set'
+    'locale', 'organizations'
 ]
 ```
 
@@ -203,6 +203,7 @@ Install and run `tox`:
 $ pip install tox
 $ tox
 ```
+
 
 ## Continuous integration
 

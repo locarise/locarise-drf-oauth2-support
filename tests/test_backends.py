@@ -30,7 +30,7 @@ class TestBackendTestCase(TestCase):
             sorted(
                 [
                     'email', 'uid', 'first_name', 'last_name', 'is_staff',
-                    'is_active', 'is_superuser', 'locale', 'organization_set'
+                    'is_active', 'is_superuser', 'locale', 'organizations'
                 ]
             )
         )

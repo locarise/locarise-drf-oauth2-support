@@ -24,13 +24,13 @@ class TestModels(TestCase):
 
         self.assertRaises(ValueError, User.objects.create_user, None)
 
-    def test_user_organization_set(self):
+    def test_user_organizations(self):
         user = UserF()
 
         data = {}
-        user.organization_set = data
+        user.organizations = data
         user.save()
-        self.assertEqual(user.organization_set, data)
+        self.assertEqual(user.organizations, data)
 
         data = [
             {
@@ -39,6 +39,6 @@ class TestModels(TestCase):
                 'role': 'manager'
             }
         ]
-        user.organization_set = data
+        user.organizations = data
         user.save()
-        self.assertEqual(user.organization_set, data)
+        self.assertEqual(user.organizations, data)
