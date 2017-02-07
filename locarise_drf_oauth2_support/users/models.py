@@ -39,20 +39,7 @@ class UserManager(BaseUserManager):
 
         user.email = email
 
-        user_fields = [
-            'first_name',
-            'last_name',
-            'is_staff',
-            'is_active',
-            'is_superuser',
-            'locale',
-            'organizations',
-        ]
-        for field in user_fields:
-            if field in extra_fields:
-                value = extra_fields[field]
-            else:
-                value = getattr(user, field)
+        for field, value in extra_fields.items():
             setattr(user, field, value)
 
         user.set_password(password)
