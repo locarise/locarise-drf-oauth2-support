@@ -25,7 +25,7 @@ Works with:
 Install with pip:
 
 ```bash
-$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support==0.2.2
+$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support==0.2.3
 ```
 
 ### Django
@@ -159,8 +159,8 @@ Set up REST Framework classes:
 ```python
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',

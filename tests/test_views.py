@@ -178,7 +178,7 @@ class UserViewsTestCaseTestCase(TestCase):
         url = reverse('me')
 
         res = client.get(url)
-        self.assertEqual(res.status_code, 403)
+        self.assertEqual(res.status_code, 401)  # It shouldn't be a 403.
 
         user = UserF()
         client.login(email=user.email, password='pass', format='json')
