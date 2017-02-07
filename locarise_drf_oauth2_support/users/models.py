@@ -25,22 +25,36 @@ from .utils import sane_repr
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, email, password=None, uid=None, **extra_fields):
 
         extra_fields.pop('username', None)
 
         if not email:
             raise ValueError('Users must have an email address')
 
-        user = self.model(
-            uid=extra_fields.get('uid'),
-            email=UserManager.normalize_email(email),
-            first_name=extra_fields.get('first_name') or '',
-            last_name=extra_fields.get('last_name') or '',
-            is_staff=extra_fields.get('is_staff') or False,
-            is_active=extra_fields.get('is_active') or True,
-            is_superuser=extra_fields.get('is_superuser') or False,
-        )
+        if uid:
+            user, _ = self.model.objects.get_or_create(uid=uid)
+        else:
+            user, _ = self.model.objects.get_or_create(email=email)
+
+        user.email = email
+
+        user_fields = [
+            'first_name',
+            'last_name',
+            'is_staff',
+            'is_active',
+            'is_superuser',
+            'locale',
+            'organizations',
+        ]
+        for field in user_fields:
+            if field in extra_fields:
+                value = extra_fields[field]
+            else:
+                value = getattr(user, field)
+            setattr(user, field, value)
+
         user.set_password(password)
         user.save(using=self._db)
         return user
