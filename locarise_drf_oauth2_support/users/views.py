@@ -16,6 +16,7 @@ class CurrentUserView(generics.RetrieveAPIView):
     Retrieve authenticated user information.
     """
     model = User
+    queryset = User.objects.none()
     serializer_class = CurrentUserSerializer
     permission_classes = (IsAuthenticated,)
 

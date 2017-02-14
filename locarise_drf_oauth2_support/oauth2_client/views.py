@@ -40,6 +40,7 @@ class ObtainAuthToken(APIView):
     renderer_classes = (renderers.JSONRenderer,)
     serializer_class = AuthTokenSerializer
     model = Token
+    queryset = Token.objects.none()
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -63,6 +64,7 @@ class OAuthObtainAuthToken(APIView):
     renderer_classes = (renderers.JSONRenderer,)
     serializer_class = AccessTokenSerializer
     model = Token
+    queryset = Token.objects.none()
 
     def get_backend_instance(self, name=None, strategy=None):
         try:
