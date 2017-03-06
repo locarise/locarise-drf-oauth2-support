@@ -115,7 +115,7 @@ SOCIAL_AUTH_LOCARISE_OAUTH2_AUTHORIZATION_URL = os.environ.get(
 )
 SOCIAL_AUTH_API_PROFILE_URL = os.environ.get(
     'LOCARISE_API_PROFILE_URL',
-    'http://127.0.0.1:8001/userinfo.json'
+    'http://127.0.0.1:8001/userinfo'
 )
 ```
 

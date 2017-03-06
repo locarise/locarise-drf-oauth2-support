@@ -53,10 +53,8 @@ class LocariseOAuth2(BaseOAuth2):
         }
 
     def api_profile_url(self):
-        return self.setting(
-            'API_PROFILE_URL',
-            'https://accounts.locarise.com/userinfo.json'
-        )
+        return self.setting('API_PROFILE_URL',
+                            'https://accounts.locarise.com/userinfo')
 
     def user_data(self, access_token, *args, **kwargs):
         """

@@ -21,7 +21,7 @@ class TestBackendTestCase(TestCase):
         )
         self.assertEqual(
             backend.api_profile_url(),
-            'https://accounts.locarise.com/userinfo.json'
+            'https://accounts.locarise.com/userinfo'
         )
 
         details = backend.get_user_details(response={'email': '', 'uid': ''})
