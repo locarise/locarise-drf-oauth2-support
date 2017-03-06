@@ -1,9 +1,8 @@
 # Locarise Django Rest-Framework Oauth2 Support
 
-Install this lib if you would like to login with Locarise Auth provider
-(`accounts.locarise.com`)
-
 [![CircleCIBadge]](https://circleci.com/gh/locarise/locarise-drf-oauth2-support/tree/develop)
+
+**Social Login for Locarise Auth provider (`accounts.locarise.com`)**
 
 ---
 
