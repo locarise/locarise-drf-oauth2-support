@@ -14,7 +14,7 @@ connected to `Locarise Oauth2 provider`.
 
 Works with:
 
-* `Django >= 1.8` and `djangorestframework>=3.0.1`
+* `Django >= 1.10` and `djangorestframework>=3.0.1`
 * `Python 2.7` and `Python 3.5`
 
 ## Installation
