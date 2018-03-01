@@ -146,14 +146,24 @@ class TestOauth2ClientViewsTestCase(TestCase):
             ]
         )
 
-        # 3. User is not active
+    @mock.patch('locarise_drf_oauth2_support.oauth2_client.backends.LocariseOAuth2.get_json')  # noqa
+    def test_oauth_obtain_auth_token_user_is_not_active(self, get_json):
+
+        url = reverse('rest_framework:oauth2-token', kwargs={
+            'backend_name': 'locarise-oauth2'
+        })
+
+        payload = {
+            'email': 'john@example.com',
+            'access_token': 'john_access_token'
+        }
 
         get_json.return_value = {
             'email': 'john@example.com',
             'first_name': 'John',
             'last_name': 'Doe',
             'uid': 'john-uid',
-            'is_staff': True,
+            'is_staff': False,
             'is_active': False,
             'is_superuser': False,
             'locale': 'en-us',

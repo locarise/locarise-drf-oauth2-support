@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, parsers, renderers
+from rest_framework import status, parsers, renderers, permissions
 
 from social_core.backends.utils import get_backend
 from social_core.exceptions import MissingBackend
@@ -34,7 +34,7 @@ class ObtainAuthToken(APIView):
     header.
     """
     throttle_classes = ()
-    permission_classes = ()
+    permission_classes = (permissions.AllowAny,)
     parser_classes = (parsers.FormParser, parsers.MultiPartParser,
                       parsers.JSONParser,)
     renderer_classes = (renderers.JSONRenderer,)
@@ -58,7 +58,7 @@ class OAuthObtainAuthToken(APIView):
     authentication backend to authenticate the user.
     """
     throttle_classes = ()
-    permission_classes = ()
+    permission_classes = (permissions.AllowAny,)
     parser_classes = (parsers.FormParser, parsers.MultiPartParser,
                       parsers.JSONParser,)
     renderer_classes = (renderers.JSONRenderer,)
@@ -77,7 +77,6 @@ class OAuthObtainAuthToken(APIView):
         return backend(strategy=strategy)
 
     def post(self, request, backend_name, *args, **kwargs):
-
         backend = self.get_backend_instance(name=backend_name)
 
         serializer = self.serializer_class(

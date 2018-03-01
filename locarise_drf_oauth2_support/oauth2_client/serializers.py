@@ -57,4 +57,5 @@ class AccessTokenSerializer(serializers.Serializer):
             return attrs
         else:  # pragma: no cover
             raise serializers.ValidationError(
-                'Unable to login with provided credentials.')
+                'Unable to login with provided credentials.'
+            )

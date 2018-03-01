@@ -52,15 +52,15 @@ setup(
     ],
     install_requires=[
         # Auth
-        'social-auth-app-django==1.0.1',
-        'social-auth-core==1.0.1',
+        'social-auth-app-django==2.1.0',
+        'social-auth-core==1.7.0',
         'requests-oauthlib==0.7.0',
         # 'python-social-auth==0.3.5',  # not used and deprecated
-        'oauthlib==2.0.1',
+        'oauthlib==2.0.6',
 
         # Other
-        'Django>=1.8',
-        'djangorestframework>=3.0.1',
+        'Django>=1.10',
+        'djangorestframework>=3.6.0',
         'shortuuid>=0.4.3',
         'django-shortuuidfield>=0.1.3',
         'django-extensions>=1.6.1',
