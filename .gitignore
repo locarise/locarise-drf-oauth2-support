@@ -54,3 +54,6 @@ htmlcov/
 
 .mypy_cache
 *.code-workspace
+
+.python-version
+.vscode/*

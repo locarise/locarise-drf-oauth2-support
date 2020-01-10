@@ -45,25 +45,23 @@ setup(
         "Framework :: Django",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     install_requires=[
         # Auth
-        'social-auth-app-django==2.1.0',
-        'social-auth-core==1.7.0',
-        'requests-oauthlib==0.7.0',
-        # 'python-social-auth==0.3.5',  # not used and deprecated
-        'oauthlib==2.0.6',
+        'social-auth-app-django==3.1.0',
+        'social-auth-core==3.2.0',
+        'requests-oauthlib==1.3.0',
+        'oauthlib==3.0.2',
 
         # Other
-        'Django>=1.10',
-        'djangorestframework>=3.6.0',
-        'shortuuid>=0.4.3',
+        'Django>=1.11.27',
+        'djangorestframework>=3.9.3',
+        'shortuuid>=0.5.0',
         'django-shortuuidfield>=0.1.3',
-        'django-extensions>=1.6.1',
+        'django-extensions>=2.2.5',
     ],
     include_package_data=True,
     zip_safe=False
