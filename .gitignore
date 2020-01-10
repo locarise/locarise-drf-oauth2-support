@@ -51,3 +51,6 @@ server/static/
 dist
 build
 htmlcov/
+
+.mypy_cache
+*.code-workspace
