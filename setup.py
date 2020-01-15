@@ -57,10 +57,10 @@ setup(
         "social-auth-app-django==3.1.0",
         "social-auth-core==3.2.0",
         "requests-oauthlib==1.3.0",
-        "oauthlib==3.0.2",
+        "oauthlib==3.1.0",
         # Other
-        "Django>=2.1.15",
-        "djangorestframework>=3.9.3",
+        "Django>=2.2.8",
+        "djangorestframework>=3.11.0",
         "shortuuid>=0.5.0",
         "django-shortuuidfield>=0.1.3",
         "django-extensions>=2.2.5",

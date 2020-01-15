@@ -14,17 +14,16 @@ connected to `Locarise Oauth2 provider`.
 
 Works with:
 
-* `Django >= 1.11 < 2` and `djangorestframework>=3.0.1`
-* `Python 3.5` and `Python 3.7`
+* `Django >= 2.2.8 < 3` and `djangorestframework>=3.11.0`
+* `Python 3.7`
 
 ## Installation
 
 ### Python
 
 Install with pip:
-
 ```bash
-$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support==0.3.0
+$ pip install git+https://github.com/locarise/locarise-drf-oauth2-support#egg=locarise-drf-oauth2-support==0.4.1
 ```
 
 ### Django
