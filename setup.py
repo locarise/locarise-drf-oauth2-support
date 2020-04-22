@@ -60,10 +60,11 @@ setup(
         "oauthlib==3.1.0",
         # Other
         "Django>=2.2.8",
-        "djangorestframework>=3.11.0",
+        "djangorestframework>=3.9.0",
         "shortuuid>=0.5.0",
         "django-shortuuidfield>=0.1.3",
         "django-extensions>=2.2.5",
+        "django-simple-history>=2.8",
     ],
     include_package_data=True,
     zip_safe=False,

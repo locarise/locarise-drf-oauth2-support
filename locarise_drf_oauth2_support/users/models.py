@@ -7,12 +7,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin,
-    BaseUserManager
+    BaseUserManager,
 )
-from django_extensions.db.fields import (
-    ModificationDateTimeField,
-    CreationDateTimeField
-)
+from django_extensions.db.fields import ModificationDateTimeField, CreationDateTimeField
+from simple_history.models import HistoricalRecords
 
 try:
     from django.contrib.postgres.fields import JSONField
@@ -24,13 +22,12 @@ from .utils import sane_repr
 
 
 class UserManager(BaseUserManager):
-
     def create_user(self, email, password=None, uid=None, **extra_fields):
 
-        extra_fields.pop('username', None)
+        extra_fields.pop("username", None)
 
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError("Users must have an email address")
 
         if uid:
             user, _ = self.model.objects.get_or_create(uid=uid)
@@ -52,6 +49,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     Users within the Django authentication system are represented by
     this model.
     """
+
     # Fields from SAMS
     uid = ShortUUIDField(primary_key=True, editable=False)
     email = models.EmailField(unique=True, max_length=254)
@@ -68,19 +66,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
 
-    __repr__ = sane_repr('email',)
+    history = HistoricalRecords()
+
+    __repr__ = sane_repr("email",)
 
     class Meta:
-        verbose_name = _('user')
-        verbose_name_plural = _('users')
+        verbose_name = _("user")
+        verbose_name_plural = _("users")
 
     def get_full_name(self):
         """
         Returns the first_name plus the last_name, with a space in between.
         """
-        full_name = '%s %s' % (self.first_name, self.last_name)
+        full_name = "%s %s" % (self.first_name, self.last_name)
         return full_name.strip()
 
     def get_short_name(self):
