@@ -4,7 +4,8 @@ import json
 
 import mock
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import TestCase
+from rest_framework.test import APIClient
 
 from locarise_drf_oauth2_support.users.factories import UserF
 
@@ -18,7 +19,7 @@ User = get_user_model()
 
 
 class TestOauth2ClientViewsTestCase(TestCase):
-    client_class = Client
+    client_class = APIClient
 
     def test_obtain_auth_token(self):
         url = reverse("rest_framework:token")
@@ -157,29 +158,30 @@ class TestOauth2ClientViewsTestCase(TestCase):
 
 
 class UserViewsTestCaseTestCase(TestCase):
-    client_class = Client
+    client_class = APIClient
 
-    def test_current_user_view(self):
-        client = Client()
+    def test_unauthenticated_current_user_view(self):
+        client = self.client_class()
         url = reverse("me")
 
         res = client.get(url)
         self.assertEqual(res.status_code, 401)  # It shouldn't be a 403.
 
+    def test_authenticated_current_user_view(self):
         user = UserF()
-        user.set_password("pass")
 
-        self.assertTrue(user.check_password("pass"))
+        client = self.client_class()
+        client.force_authenticate(user=user)
 
-        login_res = client.login(email=user.email, password="pass", format="json")
-
-        self.assertTrue(login_res)
+        url = reverse("me")
 
         res = client.get(url)
 
         self.assertEqual(res.status_code, 200)
+
         try:
             data = res.json()
         except AttributeError:
             data = json.loads(res.content)
+
         self.assertEqual(data["first_name"], user.first_name)
