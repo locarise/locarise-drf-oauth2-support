@@ -61,6 +61,8 @@ setup(
         # Other
         "Django>=2.2.8",
         "djangorestframework>=3.9.0",
+        "psycopg2-binary>=2.8.0",
+        "dj-database-url>=0.5.0",
         "shortuuid>=0.5.0",
         "django-shortuuidfield>=0.1.3",
         "django-extensions>=2.2.5",
